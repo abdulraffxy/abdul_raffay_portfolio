@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdul Raffay | Freelance Content Writer & AI Prompt Engineer</title>
+<meta name="description" content="Professional content writer and AI prompt engineer with expertise in blog writing, SEO content, and AI-powered writing tools.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root {
+  --bg: #0b1220;
+  --card: rgba(255,255,255,0.03);
+  --text: #e7eef8;
+  --muted: #9aa6b2;
+  --accent: #1fb6ff;
+  --accent-2: #7ef0c7;
+  --glass: rgba(255,255,255,0.04);
+  --radius: 14px;
+  --header-font: 'Montserrat', sans-serif;
+  --body-font: 'Poppins', sans-serif;
+  --gradient-primary: linear-gradient(135deg, hsl(200, 100%, 55%), hsl(170, 85%, 65%));
+  --shadow-elegant: 0 10px 30px -10px hsla(200, 100%, 55%, 0.3);
+  --shadow-glow: 0 0 40px hsla(200, 100%, 70%, 0.4);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+  scroll-behavior: smooth; 
+}
+
+body {
+  font-family: var(--body-font);
+  color: var(--text);
+  line-height: 1.6;
+  background-color: var(--bg);
+  overflow-x: hidden;
+}
+
+#canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#canvas-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.container { 
+  max-width: 1100px; 
+  margin: auto; 
+  overflow: hidden; 
+  padding: 0 2rem; 
+}
+
+h1, h2, h3 {
+  font-family: var(--header-font);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+section {
+  padding: 5rem 0;
+}
+
+/* Header Navigation */
+#main-header {
+  background: rgba(11, 18, 32, 0.85);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--glass);
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+#navbar .logo {
+  font-family: var(--header-font);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+#navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+}
+
+#navbar ul li a {
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 600;
+  transition: var(--transition-smooth);
+  border-radius: 8px;
+}
+
+#navbar ul li a:hover {
+  color: var(--accent);
+  background: var(--glass);
+}
+
+/* Hero Section */
+#home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+#home .home-content {
+  max-width: 800px;
+}
+
+#home h1 {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#home h3 {
+  font-size: 1.7rem;
+  color: var(--muted);
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+}
+
+#home .tagline {
+  font-size: 1.2rem;
+  min-height: 2rem;
+  margin-bottom: 2rem;
+  color: var(--accent-2);
+  font-weight: 600;
+  display: inline-block;
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2rem;
+  background-color: var(--accent);
+  animation: blink 0.7s infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  text-decoration: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+  margin: 0 0.5rem;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+  border: 2px solid var(--accent);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--accent);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent-2);
+  border: 2px solid var(--accent-2);
+}
+
+.btn-secondary:hover {
+  background: var(--accent-2);
+  color: var(--bg);
+  box-shadow: var(--shadow-elegant);
+}
+
+/* Glass Cards */
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-elegant);
+  background: rgba(255,255,255,0.06);
+}
+
+/* About Section */
+#about .about-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+#about .glass-card h3 {
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+#about p {
+  margin-bottom: 1rem;
+  color: var(--muted);
+}
+
+#about .hobbies, #about .languages {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+#about .hobbies li, #about .languages li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: var(--muted);
+}
+
+#about .hobbies li::before, #about .languages li::before {
+  content: '✓';
+  color: var(--accent-2);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* Skills Grid */
+#skills .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  text-align: center;
+}
+
+#skills .skill-item {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--glass);
+  transition: var(--transition-smooth);
+  font-weight: 600;
+  color: var(--text);
+}
+
+#skills .skill-item:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: var(--shadow-elegant);
+  background: rgba(31, 182, 255, 0.1);
+  border-color: var(--accent);
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1.5px;
+}
+
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item.left {
+  left: 0;
+}
+
+.timeline-item.right {
+  left: 50%;
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: -10px;
+  background-color: var(--bg);
+  border: 3px solid var(--accent);
+  top: 25px;
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.timeline-item.right::after {
+  left: -10px;
+}
+
+.timeline-content {
+  padding: 20px 25px;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  position: relative;
+  border-radius: var(--radius);
+  border: 1px solid var(--glass);
+  transition: var(--transition-smooth);
+}
+
+.timeline-content:hover {
+  box-shadow: var(--shadow-elegant);
+  background: rgba(255,255,255,0.06);
+}
+
+.timeline-content h3 {
+  margin-top: 0;
+  color: var(--accent);
+}
+
+.timeline-content .date {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-2);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+  color: var(--muted);
+  margin: 0.5rem 0;
+}
+
+/* Portfolio Section */
+#portfolio {
+  text-align: center;
+}
+
+.portfolio-download {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Contact Section */
+#contact .contact-info {
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+#contact .contact-info p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: var(--muted);
+}
+
+#contact .contact-info a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+#contact .contact-info a:hover {
+  color: var(--accent-2);
+}
+
+/* Footer */
+#main-footer {
+  background: rgba(11, 18, 32, 0.95);
+  color: var(--muted);
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 1rem;
+  border-top: 1px solid var(--glass);
+}
+
+/* Fade In Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h2 { font-size: 2rem; }
+  
+  #home h1 { font-size: 2.8rem; }
+  #home h3 { font-size: 1.4rem; }
+  
+  #navbar ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  #navbar ul li a {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  #about .about-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .timeline::after {
+    left: 31px;
+  }
+  
+  .timeline-item {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+  
+  .timeline-item.right {
+    left: 0;
+  }
+  
+  .timeline-item::after {
+    left: 21px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<!-- Background Canvas Container -->
+<div id="canvas-container"></div>
+
+<!-- Content Wrapper -->
+<div class="content-wrapper">
+  <header id="main-header">
+    <div class="container">
+      <nav id="navbar">
+        <a href="#home" class="logo">Abdul Raffay</a>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HOME SECTION -->
+    <section id="home">
+      <div class="container">
+        <div class="home-content">
+          <h1>Abdul Raffay</h1>
+          <h3>Freelancer | Content Writer | AI Prompt Engineer</h3>
+          <p class="tagline">"<span id="typing-effect"></span><span class="typing-cursor"></span>"</p>
+          <a href="#portfolio" class="btn btn-primary">View My Portfolio</a>
+          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="fade-in">
+      <div class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+          <div class="glass-card">
+            <h3>My Story</h3>
+            <p>A passionate and self-driven content writer with hands-on experience across platforms like Fiverr, Upwork, and Remotive. Known for attention to detail, creativity, and a strong command of language.</p>
+            <p>Excels in writing blogs, reviews, and optimized web content. Self-taught with 50+ hours of freelancing learning and currently exploring AI-powered writing tools.</p>
+          </div>
+          <div class="glass-card">
+            <h3>Hobbies & Interests</h3>
+            <ul class="hobbies">
+              <li>Reading Tech Blogs</li>
+              <li>Exploring New Tools</li>
+              <li>Trendspotting Online</li>
+            </ul>
+            <h4 style="margin-top: 2rem; color: var(--accent);">Languages</h4>
+            <ul class="languages">
+              <li>English</li>
+              <li>Urdu</li>
+              <li>German</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="fade-in">
+      <div class="container">
+        <h2>My Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-item">HTML</div>
+          <div class="skill-item">CSS</div>
+          <div class="skill-item">JavaScript</div>
+          <div class="skill-item">Content Writing</div>
+          <div class="skill-item">Blog & Article Writing</div>
+          <div class="skill-item">Proofreading & Editing</div>
+          <div class="skill-item">Market Research</div>
+          <div class="skill-item">MS Word Formatting</div>
+          <div class="skill-item">Typing & Note Conversion</div>
+          <div class="skill-item">PDF Conversion</div>
+          <div class="skill-item">Review Writing</div>
+          <div class="skill-item">Data Entry</div>
+          <div class="skill-item">Grammar & Syntax Review</div>
+          <div class="skill-item">Video Game Review</div>
+          <div class="skill-item">AI Prompt Engineering</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education" class="fade-in">
+      <div class="container">
+        <h2>Education</h2>
+        <div class="timeline">
+          <div class="timeline-item left">
+            <div class="timeline-content">
+              <h3>Foundation Program</h3>
+              <p class="date">2026 – 2027</p>
+              <p>ICE International Center of Excellence</p>
+            </div>
+          </div>
+          <div class="timeline-item right">
+            <div class="timeline-content">
+              <h3>O-Levels</h3>
+              <p class="date">Completed 2025</p>
+              <p>IUSS Iqra University Schooling System</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="fade-in">
+      <div class="container">
+        <h2>Work Experience</h2>
+        <div class="timeline">
+          <div class="timeline-item left">
+            <div class="timeline-content">
+              <h3>AI Content Assistant</h3>
+              <p class="date">Jan 2025 – Jul 2025</p>
+              <p><strong>Creative Minds Hub</strong></p>
+              <p>Assisted in creating AI-generated content, performed detailed editing, and contributed to prompt engineering research.</p>
+            </div>
+          </div>
+          <div class="timeline-item right">
+            <div class="timeline-content">
+              <h3>Junior Content Associate</h3>
+              <p class="date">Feb 2024 – Dec 2024</p>
+              <p><strong>Visionary Digital Media</strong></p>
+              <p>Wrote SEO articles, engaging blogs, and product descriptions. Collaborated with designers to ensure content alignment.</p>
+            </div>
+          </div>
+          <div class="timeline-item left">
+            <div class="timeline-content">
+              <h3>Persues Digital — Job Hunter / Client Hunter</h3>
+              <p class="date">Aug 2025 – Nov 2025</p>
+              <p>Sourced client leads and applied to relevant projects across Upwork and Freelancer. Crafted and tested proposals, optimized profiles for higher visibility, and tracked outreach metrics to maximize successful client conversations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio" class="fade-in">
+      <div class="container">
+        <h2>Portfolio</h2>
+        <div class="portfolio-download">
+          <a href="https://drive.google.com/file/d/1h9XcmTVjLNN0BbfDPXixQOBX7JIiA6eP/view?usp=sharing" class="btn btn-primary" target="_blank">View My Portfolio</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="fade-in">
+      <div class="container">
+        <h2>Contact Me</h2>
+        <div class="contact-info">
+          <p>Feel free to reach out! I'm always open to discussing new projects and opportunities.</p>
+          <p style="font-size: 1.1rem; line-height: 2;">
+            <i class="fas fa-envelope"></i> <a href="mailto:abdul.raffay37908@gmail.com">abdul.raffay37908@gmail.com</a><br>
+            <i class="fas fa-phone"></i> <a href="tel:03191297119">03191297119</a><br>
+            <i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/iamabdulraffay" target="_blank">LinkedIn</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="main-footer">
+    <div class="container">
+      <p>Crafted with purpose and precision — © 2026 Abdul Raffay.</p>
+    </div>
+  </footer>
+</div>
+
+<!-- Three.js from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+(function() {
+  'use strict';
+  
+  // Configuration flag - set to true to disable background
+  window.APP_DISABLE_BG = false;
+  
+  // Device detection
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const isLowPower = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  // Disable background on mobile or low-power devices
+  const shouldDisableBackground = window.APP_DISABLE_BG || isMobile || isLowPower || prefersReducedMotion;
+  
+  // ===== TYPING EFFECT =====
+  const typingEffectElement = document.getElementById('typing-effect');
+  const tagline = "Helping businesses communicate clearly, engage audiences, and grow online.";
+  let charIndex = 0;
+  
+  function type() {
+    if (charIndex < tagline.length) {
+      typingEffectElement.textContent += tagline.charAt(charIndex);
+      charIndex++;
+      setTimeout(type, 50);
+    }
+  }
+  
+  setTimeout(type, 500);
+  
+  // ===== SCROLL ANIMATIONS =====
+  const faders = document.querySelectorAll('.fade-in');
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  
+  const appearOptions = {
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
+  };
+  
+  const appearOnScroll = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, appearOptions);
+  
+  faders.forEach(fader => appearOnScroll.observe(fader));
+  timelineItems.forEach(item => appearOnScroll.observe(item));
+  
+  // ===== 3D BACKGROUND =====
+  if (!shouldDisableBackground && typeof THREE !== 'undefined') {
+    const container = document.getElementById('canvas-container');
+    
+    // Scene setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 30;
+    
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: !isMobile });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+    
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+    
+    const pointLight1 = new THREE.PointLight(0x1fb6ff, 1, 100);
+    pointLight1.position.set(10, 10, 10);
+    scene.add(pointLight1);
+    
+    const pointLight2 = new THREE.PointLight(0x7ef0c7, 0.8, 100);
+    pointLight2.position.set(-10, -10, 10);
+    scene.add(pointLight2);
+    
+    // Create floating shapes
+    const shapes = [];
+    const shapeCount = isMobile ? 15 : 25;
+    
+    for (let i = 0; i < shapeCount; i++) {
+      let geometry;
+      const shapeType = Math.random();
+      
+      if (shapeType < 0.33) {
+        geometry = new THREE.SphereGeometry(Math.random() * 1.5 + 0.5, 16, 16);
+      } else if (shapeType < 0.66) {
+        geometry = new THREE.BoxGeometry(Math.random() * 2 + 0.5, Math.random() * 2 + 0.5, Math.random() * 2 + 0.5);
+      } else {
+        geometry = new THREE.TorusGeometry(Math.random() * 1 + 0.5, 0.3, 8, 16);
+      }
+      
+      const material = new THREE.MeshPhongMaterial({
+        color: Math.random() > 0.5 ? 0x1fb6ff : 0x7ef0c7,
+        transparent: true,
+        opacity: 0.6,
+        shininess: 100
+      });
+      
+      const mesh = new THREE.Mesh(geometry, material);
+      
+      mesh.position.x = (Math.random() - 0.5) * 50;
+      mesh.position.y = (Math.random() - 0.5) * 50;
+      mesh.position.z = (Math.random() - 0.5) * 30;
+      
+      mesh.rotation.x = Math.random() * Math.PI;
+      mesh.rotation.y = Math.random() * Math.PI;
+      
+      mesh.userData = {
+        speedX: (Math.random() - 0.5) * 0.002,
+        speedY: (Math.random() - 0.5) * 0.002,
+        speedZ: (Math.random() - 0.5) * 0.002,
+        rotationSpeedX: (Math.random() - 0.5) * 0.01,
+        rotationSpeedY: (Math.random() - 0.5) * 0.01,
+        originalX: mesh.position.x,
+        originalY: mesh.position.y,
+        originalZ: mesh.position.z
+      };
+      
+      scene.add(mesh);
+      shapes.push(mesh);
+    }
+    
+    // Mouse tracking
+    const mouse = { x: 0, y: 0 };
+    let targetMouseX = 0;
+    let targetMouseY = 0;
+    
+    document.addEventListener('mousemove', (event) => {
+      targetMouseX = (event.clientX / window.innerWidth) * 2 - 1;
+      targetMouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+    });
+    
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate);
+      
+      // Smooth mouse following
+      mouse.x += (targetMouseX - mouse.x) * 0.05;
+      mouse.y += (targetMouseY - mouse.y) * 0.05;
+      
+      // Camera parallax
+      camera.position.x = mouse.x * 2;
+      camera.position.y = mouse.y * 2;
+      camera.lookAt(scene.position);
+      
+      // Animate shapes
+      shapes.forEach(shape => {
+        // Drift motion
+        shape.position.x += shape.userData.speedX;
+        shape.position.y += shape.userData.speedY;
+        shape.position.z += shape.userData.speedZ;
+        
+        // Rotation
+        shape.rotation.x += shape.userData.rotationSpeedX;
+        shape.rotation.y += shape.userData.rotationSpeedY;
+        
+        // Mouse interaction - magnetism
+        const dx = mouse.x * 10 - shape.position.x;
+        const dy = mouse.y * 10 - shape.position.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 15) {
+          shape.position.x += dx * 0.01;
+          shape.position.y += dy * 0.01;
+        }
+        
+        // Boundary check - wrap around
+        if (Math.abs(shape.position.x) > 30) shape.position.x *= -0.9;
+        if (Math.abs(shape.position.y) > 30) shape.position.y *= -0.9;
+        if (Math.abs(shape.position.z) > 20) shape.position.z *= -0.9;
+      });
+      
+      renderer.render(scene, camera);
+    }
+    
+    animate();
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+    
+    // Click interaction - pulse effect
+    document.addEventListener('click', (event) => {
+      const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+      const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+      
+      shapes.forEach(shape => {
+        const dx = mouseX * 10 - shape.position.x;
+        const dy = mouseY * 10 - shape.position.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 20) {
+          // Pulse effect
+          const originalScale = shape.scale.x;
+          shape.scale.set(originalScale * 1.3, originalScale * 1.3, originalScale * 1.3);
+          
+          setTimeout(() => {
+            shape.scale.set(originalScale, originalScale, originalScale);
+          }, 200);
+        }
+      });
+    });
+  } else if (shouldDisableBackground) {
+    // Fallback: Static gradient background
+    document.body.style.background = 'linear-gradient(135deg, #0b1220 0%, #1a2332 100%)';
+  }
+})();
+</script>
+</body>
+</html>
